@@ -1,0 +1,30 @@
+[package]
+name = "panto-upscaler"
+version = "1.0.0"
+description = "Private Lanczos video upscaler"
+authors = ["VodoooFilms"]
+license = "MIT"
+repository = "https://github.com/VodoooFilms/Pantoupscaler"
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+name = "panto_upscaler_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+rfd = "0.15"
+base64 = "0.22"
+regex = "1"
+tokio = { version = "1", features = ["process", "io-util", "time", "sync", "macros", "rt-multi-thread"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[dev-dependencies]
+tempfile = "3"

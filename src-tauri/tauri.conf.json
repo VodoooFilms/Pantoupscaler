@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Panto Upscaler",
+  "version": "1.0.0",
+  "identifier": "com.vodooo.pantoupscaler",
+  "build": {
+    "frontendDist": "../ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "Panto Upscaler",
+        "width": 480,
+        "height": 600,
+        "minWidth": 480,
+        "minHeight": 600,
+        "maxWidth": 480,
+        "maxHeight": 600,
+        "resizable": false,
+        "maximizable": false,
+        "fullscreen": false,
+        "center": true,
+        "backgroundColor": "#1d1d1f",
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "trafficLightPosition": { "x": 14, "y": 14 },
+        "dragDropEnabled": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' ipc: http://ipc.localhost; img-src 'self' data:; style-src 'self'; script-src 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["app", "dmg"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Utility",
+    "shortDescription": "Private Lanczos video upscaler",
+    "longDescription": "Upscale video locally with FFmpeg's Lanczos scaler. Preserve the aspect ratio with black bars, crop to fill, or stretch to a target resolution.",
+    "copyright": "© 2026 VodoooFilms",
+    "resources": {
+      "resources/ffmpeg/ffmpeg": "ffmpeg/ffmpeg"
+    }
+  }
+}

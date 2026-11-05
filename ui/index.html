@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panto Upscaler</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="window-drag-region" data-tauri-drag-region aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="masthead" data-tauri-drag-region>
+      <span class="brand">
+        <svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true">
+          <rect x="1.5" y="2.5" width="11" height="6" rx="1.6"></rect>
+          <rect x="7.5" y="11.5" width="11" height="6" rx="1.6"></rect>
+          <path d="M8.5 7v5.2M6.6 10.6 8.5 12.5l1.9-1.9"></path>
+        </svg>
+        <span>Panto <em>Upscaler</em></span>
+      </span>
+      <span class="engine-badge" id="engineBadge" title="Escalador Lanczos">Lanczos</span>
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a modo claro" title="Cambiar a modo claro">
+        <svg class="sun-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="10" cy="10" r="3.2"></circle>
+          <path d="M10 2v1.5M10 16.5V18M2 10h1.5M16.5 10H18M4.3 4.3l1.1 1.1M14.6 14.6l1.1 1.1M15.7 4.3l-1.1 1.1M5.4 14.6l-1.1 1.1"></path>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M16.2 12.8A6.7 6.7 0 0 1 7.2 3.8a6.7 6.7 0 1 0 9 9Z"></path>
+        </svg>
+      </button>
+      <button class="language-toggle" id="languageToggle" aria-label="Cambiar a inglés" title="Cambiar a inglés">ES</button>
+    </header>
+
+    <section class="settings target-settings" aria-label="Resolución de salida">
+      <div class="setting-row">
+        <div class="segmented" id="targetGroup" role="group" aria-label="Resolución de salida">
+          <button type="button" data-target="720">720p</button>
+          <button type="button" data-target="1080" class="active">1080p</button>
+          <button type="button" data-target="1440">1440p</button>
+          <button type="button" data-target="2160">4K</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="media-card input-card" id="inputCard" tabindex="0" role="button" aria-label="Seleccionar un vídeo">
+      <div class="preview" id="inputPreview">
+        <div class="preview-empty" id="inputEmpty">
+          <svg class="upload-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 16V4M7 9l5-5 5 5"></path>
+            <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path>
+          </svg>
+          <span id="dropTitle">Arrastra un vídeo</span>
+          <small id="dropHint">o haz clic para abrir</small>
+        </div>
+        <img class="preview-image hidden" id="inputThumb" alt="">
+        <span class="preview-badge hidden" id="inputBadge"></span>
+      </div>
+      <div class="media-info">
+        <span class="kicker" id="inputKicker">Entrada</span>
+        <strong class="media-name" id="inputName">Sin archivo</strong>
+        <div class="media-meta">
+          <span class="media-dims" id="inputDimensions">—</span>
+          <span class="dot"></span>
+          <span id="inputSize">—</span>
+        </div>
+        <span class="media-sub" id="inputDetail">MP4 · MOV · MKV · WEBM · AVI</span>
+      </div>
+      <button class="card-action hidden" id="removeButton" aria-label="Quitar vídeo" title="Quitar vídeo">×</button>
+    </section>
+
+    <section class="settings mode-settings" aria-label="Ajuste de imagen">
+      <div class="setting-row">
+        <div class="segmented" id="modeGroup" role="group" aria-label="Ajuste de imagen">
+          <button type="button" data-mode="pad">Barras negras</button>
+          <button type="button" data-mode="crop" class="active">Recortar</button>
+          <button type="button" data-mode="stretch">Estirar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="media-card output-card" id="outputCard" aria-live="polite">
+      <div class="preview output-preview" id="outputPreview">
+        <div class="preview-empty output-empty" id="outputEmpty">
+          <span class="target-chip" id="outputTargetChip">1080p</span>
+          <span class="target-dims" id="outputTargetDims">1920 × 1080</span>
+        </div>
+        <img class="preview-image hidden" id="outputThumb" alt="">
+        <span class="preview-badge hidden" id="outputBadge"></span>
+      </div>
+      <div class="media-info">
+        <span class="kicker" id="outputKicker">Salida</span>
+        <strong class="media-name" id="outputName">—</strong>
+        <div class="media-meta">
+          <span class="media-dims" id="outputDimensions">—</span>
+          <span class="dot"></span>
+          <span id="outputSize">—</span>
+        </div>
+        <span class="media-sub" id="outputDetail">Lanczos · H.264</span>
+      </div>
+      <button class="card-action folder-action" id="folderButton" aria-label="Elegir carpeta de salida" title="Elegir carpeta de salida">
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M2.5 5.5a1.5 1.5 0 0 1 1.5-1.5h3.2l1.6 1.8H16a1.5 1.5 0 0 1 1.5 1.5v7.2A1.5 1.5 0 0 1 16 16H4a1.5 1.5 0 0 1-1.5-1.5Z"></path>
+        </svg>
+      </button>
+    </section>
+
+    <section class="status" id="statusPanel" aria-live="polite">
+      <div class="status-row">
+        <span class="status-icon" id="statusIcon"></span>
+        <strong class="status-title" id="statusTitle">Lanczos</strong>
+        <span class="status-detail" id="statusDetail">Escalado de alta calidad</span>
+        <span class="status-right" id="statusRight"></span>
+      </div>
+      <div class="track hidden" id="progressTrack"><div id="progressBar"></div></div>
+    </section>
+
+    <p class="footer-note" id="footerNote">Procesado en tu equipo · sin subir nada</p>
+
+    <div class="actions">
+      <button class="secondary hidden" id="anotherButton">Escalar otro</button>
+      <button class="secondary hidden" id="cancelButton">Cancelar</button>
+      <button class="primary" id="convertButton" disabled>Escalar a 1080p</button>
+      <button class="primary success hidden" id="revealButton">Mostrar en Finder</button>
+    </div>
+  </main>
+
+  <script src="mock.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

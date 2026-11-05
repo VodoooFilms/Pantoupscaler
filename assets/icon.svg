@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <title>Panto Upscaler — app icon</title>
+  <defs>
+    <linearGradient id="bg" x1="94" y1="916" x2="918" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10182E"/>
+      <stop offset="1" stop-color="#26345E"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="320" y1="715" x2="760" y2="270" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#69D8FF"/>
+      <stop offset="1" stop-color="#A0F2FF"/>
+    </linearGradient>
+  </defs>
+  <!-- macOS icon tile -->
+  <rect x="32" y="32" width="960" height="960" rx="218" fill="url(#bg)"/>
+  <!-- expanding outer frame: two open edges create a crisp stretch gesture -->
+  <path d="M391 250H758C767 250 774 257 774 266V635" stroke="url(#accent)" stroke-width="68" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- expansion diagonal, with arrowhead integrated into the enlarged corner -->
+  <path d="M550 474L774 250" stroke="url(#accent)" stroke-width="67" stroke-linecap="round"/>
+  <!-- source frame -->
+  <rect x="258" y="444" width="360" height="360" rx="38" stroke="#FFFFFF" stroke-width="66"/>
+  <!-- tiny separation at the origin to preserve readability at 32px -->
+</svg>

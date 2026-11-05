@@ -1,0 +1,27 @@
+{
+  "name": "panto-upscaler",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private, offline Lanczos video upscaler for macOS, Windows and Linux",
+  "license": "MIT",
+  "author": "VodoooFilms",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VodoooFilms/Pantoupscaler.git"
+  },
+  "homepage": "https://github.com/VodoooFilms/Pantoupscaler#readme",
+  "bugs": {
+    "url": "https://github.com/VodoooFilms/Pantoupscaler/issues"
+  },
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "check": "cargo check --manifest-path src-tauri/Cargo.toml",
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "icon": "tauri icon assets/icon.svg -o src-tauri/icons",
+    "prepare:engines": "bash scripts/prepare-ffmpeg.sh"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}
