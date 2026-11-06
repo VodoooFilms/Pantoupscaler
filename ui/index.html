@@ -32,17 +32,6 @@
       <button class="language-toggle" id="languageToggle" aria-label="Cambiar a inglés" title="Cambiar a inglés">ES</button>
     </header>
 
-    <section class="settings target-settings" aria-label="Resolución de salida">
-      <div class="setting-row">
-        <div class="segmented" id="targetGroup" role="group" aria-label="Resolución de salida">
-          <button type="button" data-target="720">720p</button>
-          <button type="button" data-target="1080" class="active">1080p</button>
-          <button type="button" data-target="1440">1440p</button>
-          <button type="button" data-target="2160">4K</button>
-        </div>
-      </div>
-    </section>
-
     <section class="media-card input-card" id="inputCard" tabindex="0" role="button" aria-label="Seleccionar un vídeo">
       <div class="preview" id="inputPreview">
         <div class="preview-empty" id="inputEmpty">
@@ -69,12 +58,13 @@
       <button class="card-action hidden" id="removeButton" aria-label="Quitar vídeo" title="Quitar vídeo">×</button>
     </section>
 
-    <section class="settings mode-settings" aria-label="Ajuste de imagen">
+    <section class="settings target-settings" aria-label="Resolución de salida">
       <div class="setting-row">
-        <div class="segmented" id="modeGroup" role="group" aria-label="Ajuste de imagen">
-          <button type="button" data-mode="pad">Barras negras</button>
-          <button type="button" data-mode="crop" class="active">Recortar</button>
-          <button type="button" data-mode="stretch">Estirar</button>
+        <div class="segmented" id="targetGroup" role="group" aria-label="Resolución de salida">
+          <button type="button" data-target="720">720p</button>
+          <button type="button" data-target="1080" class="active">1080p</button>
+          <button type="button" data-target="1440">1440p</button>
+          <button type="button" data-target="2160">4K</button>
         </div>
       </div>
     </section>
@@ -103,6 +93,16 @@
           <path d="M2.5 5.5a1.5 1.5 0 0 1 1.5-1.5h3.2l1.6 1.8H16a1.5 1.5 0 0 1 1.5 1.5v7.2A1.5 1.5 0 0 1 16 16H4a1.5 1.5 0 0 1-1.5-1.5Z"></path>
         </svg>
       </button>
+    </section>
+
+    <section class="settings mode-settings" aria-label="Ajuste de imagen">
+      <div class="setting-row">
+        <div class="segmented" id="modeGroup" role="group" aria-label="Ajuste de imagen">
+          <button type="button" data-mode="pad">Barras negras</button>
+          <button type="button" data-mode="crop" class="active">Recortar</button>
+          <button type="button" data-mode="stretch">Estirar</button>
+        </div>
+      </div>
     </section>
 
     <section class="status" id="statusPanel" aria-live="polite">
